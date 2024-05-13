@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import { Box } from "@mui/joy";
+import Swal from "sweetalert2";
 
 const TablewithRadio = ({ data, Output }) => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -29,6 +30,8 @@ const TablewithRadio = ({ data, Output }) => {
       setSelectedRow(null);
       setSelectedData(null);
     } else {
+     
+
     }
   };
 
@@ -53,7 +56,7 @@ const TablewithRadio = ({ data, Output }) => {
                 selected={selectedRow === row?.id}
               >
                 <TableCell style={{ textAlign: "center" }}>
-                  <img style={{width :'60px'}} src={row?.partylogo} alt="Loading..." />
+                  <img style={{ width: '60px' }} src={row?.partylogo} alt="Loading..." />
                 </TableCell>
                 <TableCell style={{ textAlign: "center" }}>
                   {row?.election_name}

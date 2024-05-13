@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Toast } from 'bootstrap';
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -52,32 +53,50 @@ const Login = () => {
                 icon: "error",
                 title: "Please complete all fields",
             });
-            name.current.value = "";
-            password.current.value = "";
+
         } else {
             try {
+                name.current.value = "";
+                password.current.value = "";
                 // Make POST request to user login endpoint
                 const res = await axios.post(
                     "http://13.127.211.205:8000/v1/login/admin",
                     data
-                  );
-              
+                );
+
                 console.log(res.status);
                 if (res.status == 200) {
                     Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Login Succesfully",
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
+                        position: "center",
+                        icon: "success",
+                        title: "Login Succesfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     localStorage.setItem("role", "admin");
-                   setTimeout(() => {
-                    window.location.href = '/dashboard'
-                   }, 1000);
+                    setTimeout(() => {
+                        window.location.href = '/dashboard'
+                    }, 1000);
+                }
+                else {
+
                 }
             } catch (error) {
                 console.error(error);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top",
+                    showConfirmButton: false,
+                    timer: 1000,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: "Please Valid Details",
+                });
 
             }
         }
@@ -185,11 +204,11 @@ const Login = () => {
                         <div class="container">
                             <div class="card">
                                 <h2>Admin Login</h2>
-                                    <input type="text" id="username" name="username" className='mt-3' placeholder="Username" ref={name} required />
-                                    <input type="password" id="password" name="password" className='mt-3' placeholder="Password" ref={password} required />
-                                    <button type="submit" className='mt-4  w-100' onClick={handleSubmit} >Login</button>
-                                    <Link to={'/loginuser'}> <button type="submit" className='mt-4  w-100' >User Login</button></Link>
-                             
+                                <input type="text" id="username" name="username" className='mt-3' placeholder="Username" ref={name} required />
+                                <input type="password" id="password" name="password" className='mt-3' placeholder="Password" ref={password} required />
+                                <button type="submit" className='mt-4  w-100' onClick={handleSubmit} >Login</button>
+                                <Link to={'/loginuser'}> <button type="submit" className='mt-4  w-100' >User Login</button></Link>
+
                             </div>
                         </div>
                     </div>

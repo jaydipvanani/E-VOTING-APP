@@ -4,6 +4,7 @@ import TablewithRadio from '../../Atoms/TablewithRadio'
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_VOTE_PENDING } from '../../redux-saga/admin/action/Action';
 import { vote_post_req } from '../../redux-saga/Constant';
+import Swal from 'sweetalert2';
 
 const Home = () => {
 
@@ -37,6 +38,9 @@ const Home = () => {
         window.location.href="/"
         localStorage.clear();
         window.location.reload()
+
+
+        
     }
 
 
