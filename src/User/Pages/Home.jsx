@@ -33,6 +33,10 @@ const Home = () => {
             election: rowData?.election,
         };
         dispatch({ type: ADD_VOTE_PENDING, endpoint: vote_post_req, payload: data })
+
+        window.location.href="/"
+        localStorage.clear();
+        window.location.reload()
     }
 
 

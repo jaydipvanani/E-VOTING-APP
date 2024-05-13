@@ -75,7 +75,7 @@ const Dashboard = () => {
                 <div class="row">
                   <div class="col">
                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Party</span>
-                    <span class="h3 font-bold mb-0">{partyData.length}</span>
+                    <span class="h3 font-bold mb-0">{partyData?.length}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -93,7 +93,7 @@ const Dashboard = () => {
                 <div class="row">
                   <div class="col">
                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Election</span>
-                    <span class="h3 font-bold mb-0">{electiondata.length}</span>
+                    <span class="h3 font-bold mb-0">{electiondata?.length}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -112,7 +112,7 @@ const Dashboard = () => {
                 <div class="row">
                   <div class="col">
                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Voters</span>
-                    <span class="h3 font-bold mb-0">{userdata.length}</span>
+                    <span class="h3 font-bold mb-0">{userdata?.length}</span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
