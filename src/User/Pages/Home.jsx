@@ -30,7 +30,7 @@ const Home = () => {
     let finalData = (rowData) => {
         let data = {
             user: user?._id,
-            party: rowData?.id,
+            party: rowData?.party_id,
             election: rowData?.election,
         };
         dispatch({ type: ADD_VOTE_PENDING, endpoint: vote_post_req, payload: data })

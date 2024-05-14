@@ -17,6 +17,8 @@ const Dashboard = () => {
   const partyData = useSelector((state) => state.adminReducer.party);
   const electiondata = useSelector((state) => state.adminReducer.election);
   const userdata = useSelector((state) => state.adminReducer.user);
+  const vote = useSelector((state)=>state.adminReducer.vote)
+ console.log(vote,"shdfghdsgfsdhgfgsfhghdh");
   const isLoading = useSelector((state) => state.adminReducer.isLoading);
   const error = useSelector((state) => state.adminReducer.error);
 
@@ -40,7 +42,33 @@ const Dashboard = () => {
       minWidth: 170,
       align: "center",
     },
+    {
+      id: "vote",
+      label: "vote",
+      minWidth: 170,
+      align: "center",
+    }
   ];
+
+  function calculatePartyVotes(data) {
+    const partyVotes = {};
+    // Filter out entries where the user has voted for a party
+    const votedEntries = data.filter(
+      (entry) => entry.party !== null && entry.election !== null
+    );
+    // Iterate over voted entries
+    votedEntries.forEach((entry) => {
+      const { party } = entry;
+      if (party.party_name in partyVotes) {
+        partyVotes[party.party_name]++;
+      } else {
+        partyVotes[party.party_name] = 1;
+      }
+    });
+    return partyVotes;
+  }
+
+  const partyVotes = calculatePartyVotes(vote);
 
   // Sample row data
   const rows = partyData?.map((party) => ({
@@ -48,6 +76,7 @@ const Dashboard = () => {
     PartyName : party.party_name,
     img : party.party_logo,
     PartySCode : party.short_code,
+    vote: partyVotes[party.party_name] || 0,
   }));
   // Function to handle form submission for adding election
   const handleSubmit = (formData) => {
@@ -131,8 +160,6 @@ const Dashboard = () => {
       <DataTable
         columns={columns}
         rows={rows}
-        onDelete={handleDelete}
-        onUpdate={handleUpdate}
         height={450}
       />
 
