@@ -74,7 +74,7 @@ const LoginUser = () => {
                     localStorage.setItem("userData", JSON.stringify(res.data.data));
                     setTimeout(() => {
                         window.location.href = '/home'
-                    }, 1000);
+                    }, 500);
                 }
             } catch (error) {
                 console.error(error);

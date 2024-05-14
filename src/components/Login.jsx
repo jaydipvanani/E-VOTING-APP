@@ -76,7 +76,7 @@ const Login = () => {
                     localStorage.setItem("role", "admin");
                     setTimeout(() => {
                         window.location.href = '/dashboard'
-                    }, 1000);
+                    }, 100);
                 }
                 else {
 
