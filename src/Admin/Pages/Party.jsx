@@ -15,8 +15,8 @@ import { Box, ListItem, ModalClose, Sheet, Typography } from '@mui/joy';
 import DataTable from '../../Atoms/DataTable';
 import AddButton from '../../Atoms/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_PARTY_PENDING, GET_ALL_PARTY_PENDING } from '../../redux-saga/admin/action/Action';
-import { party_get_req, party_post_req } from '../../redux-saga/Constant';
+import { ADD_PARTY_PENDING, DELETE_PARTY_PENDING, GET_ALL_PARTY_PENDING } from '../../redux-saga/admin/action/Action';
+import { party_delete_req, party_get_req, party_post_req, partylist_delete_req } from '../../redux-saga/Constant';
 
 export default function Party() {
 
@@ -55,6 +55,7 @@ export default function Party() {
     PartyName: party?.party_name || "",
     img: party?.party_logo || "",
     PartySCode: party?.short_code || "",
+    
   }));
 
   // Function to handle form submission for adding election
@@ -80,6 +81,7 @@ export default function Party() {
   // Function to handle deletion of election
   const handleDelete = (id) => {
     console.log(id);
+    dispatch({type:DELETE_PARTY_PENDING , payload : id ,endpoint : party_delete_req} );
   };
 
   // Dummy function for handling update (not implemented)

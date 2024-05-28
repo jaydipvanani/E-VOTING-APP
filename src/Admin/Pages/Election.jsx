@@ -3,8 +3,8 @@ import DataTable from "../../Atoms/DataTable";
 import AddButton from "../../Atoms/Button";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_ELECTION_PENDING, GET_ALL_ELECTION_PENDING } from "../../redux-saga/admin/action/Action";
-import { election_get_req, election_post_req } from "../../redux-saga/Constant";
+import { ADD_ELECTION_PENDING, DELETE_ELECTION_PENDING, GET_ALL_ELECTION_PENDING } from "../../redux-saga/admin/action/Action";
+import { election_delete_req, election_get_req, election_post_req } from "../../redux-saga/Constant";
 
 const Election = () => {
   const inputTitles = ["election_name", "date"];
@@ -12,10 +12,10 @@ const Election = () => {
 
 
   let dispatch = useDispatch();
- 
+
   let data = useSelector((state) => state.adminReducer.election)
 
-console.log(data,"Sdsa");
+  console.log(data, "Sdsa");
 
   // // Sample column data
   const columns = [
@@ -27,6 +27,7 @@ console.log(data,"Sdsa");
   const rows = data?.map((rowData) => ({
     election_name: rowData?.election_name,
     date: rowData?.date,
+    id:rowData?._id,
   }))
 
   // Function to handle form submission for adding election
@@ -36,7 +37,8 @@ console.log(data,"Sdsa");
 
   // Function to handle deletion of election
   const handleDelete = (id) => {
-    console.log(id);
+    console.log(id , "fhduifdhtuidigthityirtyiriro");
+    dispatch({ type: DELETE_ELECTION_PENDING, payload: id , endpoint : election_delete_req})
   };
 
   // Dummy function for handling update (not implemented)
