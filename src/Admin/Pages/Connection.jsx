@@ -10,8 +10,8 @@ import {
   FormControl,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CONNECTION_PENDING, GET_ALL_CONNECTION_PENDING, GET_ALL_ELECTION_PENDING, GET_ALL_PARTY_PENDING } from '../../redux-saga/admin/action/Action';
-import { election_get_req, party_get_req, partylist_get_req, partylist_post_req } from '../../redux-saga/Constant';
+import { ADD_CONNECTION_PENDING, DELETE_CONNECTION_PENDING, GET_ALL_CONNECTION_PENDING, GET_ALL_ELECTION_PENDING, GET_ALL_PARTY_PENDING } from '../../redux-saga/admin/action/Action';
+import { election_delete_req, election_get_req, party_delete_req, party_get_req, partylist_get_req, partylist_post_req } from '../../redux-saga/Constant';
 
 const Connection = () => {
   const [selectedElection, setSelectedElection] = useState('');
@@ -57,7 +57,9 @@ const Connection = () => {
 
   // Function to handle deletion of election
   const handleDelete = (id) => {
-    console.log(id);
+    console.log(id , "this is a connection delete id");
+
+    dispatch({type:DELETE_CONNECTION_PENDING , endpoint :party_delete_req , payload:id})
   };
 
   // Function to handle update of election

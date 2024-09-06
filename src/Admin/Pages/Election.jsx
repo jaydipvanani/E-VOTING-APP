@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Loader, Placeholder } from 'rsuite';
 import DataTable from "../../Atoms/DataTable";
 import AddButton from "../../Atoms/Button";
 import { Box, Grid, IconButton, TextField } from "@mui/material";
@@ -27,7 +28,7 @@ const Election = () => {
   const rows = data?.map((rowData) => ({
     election_name: rowData?.election_name,
     date: rowData?.date,
-    id:rowData?._id,
+    id: rowData?._id,
   }))
 
   // Function to handle form submission for adding election
@@ -37,8 +38,13 @@ const Election = () => {
 
   // Function to handle deletion of election
   const handleDelete = (id) => {
-    console.log(id , "fhduifdhtuidigthityirtyiriro");
-    dispatch({ type: DELETE_ELECTION_PENDING, payload: id , endpoint : election_delete_req})
+    console.log(id, "fhduifdhtuidigthityirtyiriro");
+    dispatch({ type: DELETE_ELECTION_PENDING, payload: id, endpoint: election_delete_req });
+
+
+
+
+
   };
 
   // Dummy function for handling update (not implemented)
